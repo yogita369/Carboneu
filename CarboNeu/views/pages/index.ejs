@@ -1,0 +1,284 @@
+<% layout('/layout/boiler')%>
+<style>
+
+
+  .container-card {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 25px;
+    flex-wrap: wrap;
+    padding: 30px;
+  }
+
+  .card {
+    background: #ffffff;
+    width: 230px;
+    height: 340px;
+    border-radius: 18px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    padding: 25px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  #Buttons {
+  height: 25vh;                 /* occupies 25% of viewport height */
+  display: flex;                /* arrange buttons in a row */
+  justify-content: center;      /* center horizontally */
+  align-items: center;          /* center vertically */
+  gap: 60px;                    /* increased space between buttons */
+    /* soft background (optional) */
+}
+
+/* Button styling */
+.btn1 {
+  background-color: #313647;    /* soft eco-friendly green */
+  color: white;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.05rem;
+  font-weight: 600;
+   text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* Hover animation */
+.btn1:hover {
+  background-color: #435663;
+  transform: scale(1.08);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+/* home page  part-2 */
+
+
+
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+  }
+
+  .circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #B7D096;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    flex-shrink: 0;
+  }
+
+  .card:nth-child(2) .circle {
+    background: #EEF5E6;
+  }
+  .card:nth-child(3) .circle {
+    background: #58AA61;
+  }
+
+  .circle svg {
+    width: 50px;
+    height: 50px;
+    stroke: #2b3f2b;
+  }
+
+  .text-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+  }
+
+  .fact-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #1e2f1e;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .fact-desc {
+    font-size: 0.9rem;
+    color: #4b5e4c;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+</style>
+
+<!-- part-1 -->
+<div class="container py-4">
+      <!-- Carousel: fade + autoplay -->
+      <div id="mixedCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+        <div class="carousel-inner">
+          <!-- Slide 1 -->
+          <div class="carousel-item active">
+            <img src="/assets/carbonfootprint.jpg" class="d-block w-100" alt="Slide 1">
+            <div class="carousel-caption d-none d-md-block centered">
+                <div class="caption-bg">
+                <h5>What is your Carbon footprint?</h5>
+                <p>The amount of carbon you release on daily bases</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="carousel-item">
+            <img src="/assets/co2jpg.jpg" class="d-block w-100" alt="Slide 2">
+            <div class="carousel-caption d-none d-md-block centered">
+              <div class="caption-bg">
+                <h5>Are You Carbon neutral?</h5>
+                <p>Balancing the carbondioxide we produce .</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="carousel-item">
+            <img src="/assets/tree.jpg" class="d-block w-100" alt="Slide 3">
+            <div class="carousel-caption d-none d-md-block centered">
+              <div class="caption-bg">
+                <h5>How many trees for 50 years of life?</h5>
+                <p>Every breath you take depends on nature’s balance  discover how many trees it takes to sustain your lifetime of oxygen..</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#mixedCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mixedCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- part-2 -->
+    <div id="Buttons">
+      <a href="./neutral" class="btn1">Become <b>Carbon neutral</b></a>
+        <a href="./input" class="btn1">Know your <b>Carbon footprint</b></a>
+       
+    </div>
+
+    <div class="container-card">
+    <div class="card">
+      <div class="circle">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 2v20m10-10H2"/>
+        </svg>
+      </div>
+      <div class="text-content">
+        <div class="fact-title">Trees are Earth's natural air filters..</div>
+        <div class="fact-desc">
+          urban tree filters over 25 lbs of pollutants each year, acting as a natural air purifier for your whole community.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="circle">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v8m4-4H8"/>
+        </svg>
+      </div>
+      <div class="text-content">
+        <div class="fact-title">We’ve already lost 46% of Earth's trees</div>
+        <div class="fact-desc">
+         Deforestation has removed nearly half of the world’s original trees, reducing Earth’s ability to absorb carbon and regulate temperature.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="circle">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 4h16v16H4z"/>
+        </svg>
+      </div>
+      <div class="text-content">
+        <div class="fact-title">Your clicks have a carbon footprint too.</div>
+        <div class="fact-desc">
+         Every Google search emits about 0.2 grams of CO₂ the same as a light bulb running for 2 seconds. Even our digital lives impact the planet.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+<div class="container py-4">
+  <h2><b><i>Project Inspired by</i></b></h2>
+  
+      <div id="mixedCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+        <div class="carousel-inner">
+          <!-- Slide 1 -->
+          <div class="carousel-item active">
+            <img src="/assets/aa.png" class="d-block w-100" alt="Slide 1">
+            <div class="carousel-caption d-none d-md-block centered">
+                <div class="caption-bg">
+                
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="carousel-item">
+            <img src="/assets/14.png" class="d-block w-100" alt="Slide 2">
+            <div class="carousel-caption d-none d-md-block centered">
+              <div class="caption-bg">
+               
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="/assets/15.png" class="d-block w-100" alt="Slide 2">
+            <div class="carousel-caption d-none d-md-block centered">
+              <div class="caption-bg">
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <img src="/assets/16.png" class="d-block w-100" alt="Slide 2">
+            <div class="carousel-caption d-none d-md-block centered">
+              <div class="caption-bg">
+              
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Slide 3 -->
+          <div class="carousel-item">
+            <img src="/assets/17.png" class="d-block w-100" alt="Slide 3">
+            <div class="carousel-caption d-none d-md-block centered">
+              <div class="caption-bg">
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#mixedCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mixedCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>

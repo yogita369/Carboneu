@@ -1,0 +1,1115 @@
+.wrapper-res {
+  width: 570px;
+  background: transparent;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(9px);
+  color: rgb(71, 108, 41);
+  border-radius: 12px;
+  padding: 30px 40px;
+  z-index: 1;
+  margin: 40px auto;
+}
+
+.wrapper-res ::-webkit-scrollbar {
+  width: 6px;
+}
+
+.wrapper-res::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.wrapper-res::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.wrapper-res h1 {
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+.wrapper-res .input-box {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 20px 0;
+}
+
+.input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid rgb(127, 163, 97);
+  border-radius: 40px;
+  font-size: 16px;
+  color: black;
+  padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+  color: black;
+}
+
+.input-box i {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: rgb(71, 108, 41);
+}
+
+.wrapper .remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14.5px;
+  margin: -15px 0 15px;
+  color: rgb(71, 108, 41);
+}
+
+.remember-forgot label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.remember-forgot label input {
+  accent-color: rgb(127, 163, 97);
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.remember-forgot a {
+  color: rgb(71, 108, 41);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.remember-forgot a:hover {
+  text-decoration: underline;
+  color: rgb(50, 85, 25);
+}
+
+.question-group {
+  margin: 25px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  border: 1px solid rgba(127, 163, 97, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.question-group:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(127, 163, 97, 0.5);
+}
+
+.question-label {
+  display: block;
+  margin-bottom: 18px;
+  font-weight: 600;
+  font-size: 16px;
+  color: rgb(71, 108, 41);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+}
+
+.radio-option input[type="radio"] {
+  display: none;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.1)
+  );
+  border: 2px solid rgba(127, 163, 97, 0.4);
+  border-radius: 15px;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  color: rgb(71, 108, 41);
+}
+
+.radio-label::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(127, 163, 97, 0.2),
+    transparent
+  );
+  transition: left 0.6s;
+}
+
+.radio-label:hover::before {
+  left: 100%;
+}
+
+.radio-label:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.15)
+  );
+  border-color: rgba(127, 163, 97, 0.7);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.radio-option input[type="radio"]:checked + .radio-label {
+  background: linear-gradient(
+    135deg,
+    rgba(127, 163, 97, 0.3),
+    rgba(127, 163, 97, 0.2)
+  );
+  border-color: rgb(127, 163, 97);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.radio-option input[type="radio"]:checked + .radio-label::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(127, 163, 97, 0.4),
+    rgba(127, 163, 97, 0.2),
+    rgba(127, 163, 97, 0.4)
+  );
+  z-index: -1;
+  animation: borderGlow 2s ease-in-out infinite;
+}
+
+@keyframes borderGlow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.radio-label i {
+  font-size: 22px;
+  margin-right: 15px;
+  width: 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  color: rgb(71, 108, 41);
+}
+
+.radio-option input[type="radio"]:checked + .radio-label i {
+  transform: scale(1.1);
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
+}
+
+/* Specific icon colors for different options */
+.radio-option:nth-child(1) .radio-label i {
+  color: #4caf50; /* Green for Vegan */
+}
+
+.radio-option:nth-child(2) .radio-label i {
+  color: #8bc34a; /* Light Green for Vegetarian */
+}
+
+.radio-option:nth-child(3) .radio-label i {
+  color: #ff9800; /* Orange for Meat Eater */
+}
+
+#meat-frequency .radio-option:nth-child(1) .radio-label i {
+  color: #ff5722; /* Deep Orange for Most meals */
+}
+
+#meat-frequency .radio-option:nth-child(2) .radio-label i {
+  color: #ff9800; /* Orange for Some meals */
+}
+
+#meat-frequency .radio-option:nth-child(3) .radio-label i {
+  color: #ffc107; /* Amber for Very rarely */
+}
+
+.radio-option:nth-child(1) .radio-label i {
+  color: #00e676; /* Bright Green for Yes */
+}
+
+.radio-option:nth-child(2) .radio-label i {
+  color: #ff5252; /* Red for No */
+}
+
+.radio-label span {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.radio-option input[type="radio"]:checked + .radio-label span {
+  font-weight: 600;
+  color: rgb(50, 85, 25);
+}
+
+.select-box {
+  position: relative;
+  width: 100%;
+}
+
+.select-box select {
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.1)
+  );
+  border: 2px solid rgba(127, 163, 97, 0.4);
+  border-radius: 40px;
+  font-size: 16px;
+  color: rgb(71, 108, 41);
+  padding: 0 20px;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.select-box select:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.15)
+  );
+  border-color: rgba(127, 163, 97, 0.7);
+}
+
+.select-box select:focus {
+  border-color: rgb(127, 163, 97);
+  box-shadow: 0 0 0 3px rgba(127, 163, 97, 0.2);
+}
+
+.select-box i {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  pointer-events: none;
+  transition: transform 0.3s ease;
+  color: rgb(71, 108, 41);
+}
+
+.select-box select:focus + i {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.select-box option {
+  background: rgba(255, 255, 255, 0.95);
+  color: rgb(71, 108, 41);
+}
+
+.terms-agreement {
+  margin: 20px 0;
+  font-size: 14px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  border: 1px solid rgba(127, 163, 97, 0.3);
+  color: rgb(71, 108, 41);
+}
+
+.terms-agreement label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.terms-agreement input {
+  margin-right: 12px;
+  width: 18px;
+  height: 18px;
+  accent-color: rgb(127, 163, 97);
+  cursor: pointer;
+}
+
+.terms-agreement a {
+  color: rgb(71, 108, 41);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.terms-agreement a:hover {
+  text-decoration: underline;
+  color: rgb(50, 85, 25);
+}
+
+.wrapper .btn {
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(135deg, rgb(127, 163, 97), rgb(100, 140, 70));
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  font-weight: 600;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.wrapper .btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.6s;
+}
+
+.wrapper .btn:hover::before {
+  left: 100%;
+}
+
+.wrapper .btn:hover {
+  background: linear-gradient(135deg, rgb(100, 140, 70), rgb(127, 163, 97));
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+.wrapper .btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.login-link {
+  font-size: 14.5px;
+  text-align: center;
+  margin: 20px 0 15px;
+  color: rgb(71, 108, 41);
+}
+
+.login-link p a {
+  color: rgb(71, 108, 41);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.login-link p a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: rgb(71, 108, 41);
+  transition: width 0.3s ease;
+}
+
+.login-link p a:hover::after {
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulse animation for new elements */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(127, 163, 97, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(127, 163, 97, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(127, 163, 97, 0);
+  }
+}
+
+.pulse {
+  animation: pulse 1.5s ease-in-out;
+}
+
+/* Enhanced remember-forgot section */
+.remember-forgot {
+  padding: 10px 0;
+}
+
+/* Input focus states */
+.input-box input:focus {
+  border-color: rgb(127, 163, 97);
+  box-shadow: 0 0 0 3px rgba(127, 163, 97, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+}
+/* Add these styles to the existing CSS file */
+
+/* Appliance Selection Styles */
+.appliance-group {
+  margin: 25px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  border: 1px solid rgba(127, 163, 97, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.appliance-group:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(127, 163, 97, 0.5);
+}
+
+.appliance-label {
+  display: block;
+  margin-bottom: 18px;
+  font-weight: 600;
+  font-size: 16px;
+  color: rgb(71, 108, 41);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.checkbox-option {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-option input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.1)
+  );
+  border: 2px solid rgba(127, 163, 97, 0.4);
+  border-radius: 15px;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  color: rgb(71, 108, 41);
+}
+
+.checkbox-label::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(127, 163, 97, 0.2),
+    transparent
+  );
+  transition: left 0.6s;
+}
+
+.checkbox-label:hover::before {
+  left: 100%;
+}
+
+.checkbox-label:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.15)
+  );
+  border-color: rgba(127, 163, 97, 0.7);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.checkbox-option input[type="checkbox"]:checked + .checkbox-label {
+  background: linear-gradient(
+    135deg,
+    rgba(127, 163, 97, 0.3),
+    rgba(127, 163, 97, 0.2)
+  );
+  border-color: rgb(127, 163, 97);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.checkbox-option input[type="checkbox"]:checked + .checkbox-label::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(127, 163, 97, 0.4),
+    rgba(127, 163, 97, 0.2),
+    rgba(127, 163, 97, 0.4)
+  );
+  z-index: -1;
+  animation: borderGlow 2s ease-in-out infinite;
+}
+
+.checkbox-label i {
+  font-size: 22px;
+  margin-right: 15px;
+  width: 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  color: rgb(71, 108, 41);
+}
+
+.checkbox-option input[type="checkbox"]:checked + .checkbox-label i {
+  transform: scale(1.1);
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
+}
+
+.checkbox-label span {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.checkbox-option input[type="checkbox"]:checked + .checkbox-label span {
+  font-weight: 600;
+  color: rgb(50, 85, 25);
+}
+
+/* Add these styles to the existing CSS file */
+
+/* Appliance Selection Styles */
+.appliance-group {
+  margin: 25px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  border: 1px solid rgba(127, 163, 97, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.appliance-group:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(127, 163, 97, 0.5);
+}
+
+.appliance-label {
+  display: block;
+  margin-bottom: 18px;
+  font-weight: 600;
+  font-size: 16px;
+  color: rgb(71, 108, 41);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.checkbox-option {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-option input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.1)
+  );
+  border: 2px solid rgba(127, 163, 97, 0.4);
+  border-radius: 15px;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  color: rgb(71, 108, 41);
+}
+
+.checkbox-label::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(127, 163, 97, 0.2),
+    transparent
+  );
+  transition: left 0.6s;
+}
+
+.checkbox-label:hover::before {
+  left: 100%;
+}
+
+.checkbox-label:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.15)
+  );
+  border-color: rgba(127, 163, 97, 0.7);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.checkbox-option input[type="checkbox"]:checked + .checkbox-label {
+  background: linear-gradient(
+    135deg,
+    rgba(127, 163, 97, 0.3),
+    rgba(127, 163, 97, 0.2)
+  );
+  border-color: rgb(127, 163, 97);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.checkbox-option input[type="checkbox"]:checked + .checkbox-label::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(127, 163, 97, 0.4),
+    rgba(127, 163, 97, 0.2),
+    rgba(127, 163, 97, 0.4)
+  );
+  z-index: -1;
+  animation: borderGlow 2s ease-in-out infinite;
+}
+
+.checkbox-label i {
+  font-size: 22px;
+  margin-right: 15px;
+  width: 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  color: rgb(71, 108, 41);
+}
+
+.checkbox-option input[type="checkbox"]:checked + .checkbox-label i {
+  transform: scale(1.1);
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
+}
+
+.checkbox-label span {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.checkbox-option input[type="checkbox"]:checked + .checkbox-label span {
+  font-weight: 600;
+  color: rgb(50, 85, 25);
+}
+
+/* Appliances Section Styles */
+.appliance-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.appliance-option-container {
+  margin-bottom: 10px;
+}
+
+.appliance-option {
+  display: flex;
+  align-items: center;
+}
+
+.appliance-option input[type="checkbox"] {
+  display: none;
+}
+
+.appliance-label {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.1)
+  );
+  border: 2px solid rgba(127, 163, 97, 0.4);
+  border-radius: 15px;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  color: rgb(71, 108, 41);
+}
+
+.appliance-label::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(127, 163, 97, 0.2),
+    transparent
+  );
+  transition: left 0.6s;
+}
+
+.appliance-label:hover::before {
+  left: 100%;
+}
+
+.appliance-label:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.15)
+  );
+  border-color: rgba(127, 163, 97, 0.7);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.appliance-option input[type="checkbox"]:checked + .appliance-label {
+  background: linear-gradient(
+    135deg,
+    rgba(127, 163, 97, 0.3),
+    rgba(127, 163, 97, 0.2)
+  );
+  border-color: rgb(127, 163, 97);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.appliance-option input[type="checkbox"]:checked + .appliance-label::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(127, 163, 97, 0.4),
+    rgba(127, 163, 97, 0.2),
+    rgba(127, 163, 97, 0.4)
+  );
+  z-index: -1;
+  animation: borderGlow 2s ease-in-out infinite;
+}
+
+.appliance-label i {
+  font-size: 22px;
+  margin-right: 15px;
+  width: 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  color: rgb(71, 108, 41);
+}
+
+.appliance-option input[type="checkbox"]:checked + .appliance-label i {
+  transform: scale(1.1);
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
+}
+
+.appliance-label span {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.appliance-option input[type="checkbox"]:checked + .appliance-label span {
+  font-weight: 600;
+  color: rgb(50, 85, 25);
+}
+
+/* Appliance Details Container */
+.appliance-details-container {
+  margin-top: 10px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(127, 163, 97, 0.3);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Lighting Type Styles */
+.lighting-type-group {
+  margin-bottom: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  border: 1px solid rgba(127, 163, 97, 0.2);
+}
+
+.lighting-type-label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  color: rgb(71, 108, 41);
+}
+
+.lighting-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lighting-radio-option {
+  display: flex;
+  align-items: center;
+}
+
+.lighting-radio-option input[type="radio"] {
+  display: none;
+}
+
+.lighting-radio-label {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.05)
+  );
+  border: 2px solid rgba(127, 163, 97, 0.3);
+  border-radius: 10px;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: rgb(71, 108, 41);
+  font-size: 14px;
+}
+
+.lighting-radio-label:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.1)
+  );
+  border-color: rgba(127, 163, 97, 0.5);
+}
+
+.lighting-radio-option input[type="radio"]:checked + .lighting-radio-label {
+  background: linear-gradient(
+    135deg,
+    rgba(127, 163, 97, 0.25),
+    rgba(127, 163, 97, 0.15)
+  );
+  border-color: rgb(127, 163, 97);
+}
+
+.lighting-radio-label i {
+  font-size: 18px;
+  margin-right: 10px;
+  width: 20px;
+  text-align: center;
+}
+
+/* Quantity and Power-Star Inputs */
+.quantity-input-group {
+  margin-bottom: 15px;
+}
+
+.quantity-input-group .input-box {
+  margin: 10px 0;
+}
+
+.power-star-group {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(127, 163, 97, 0.2);
+}
+
+.power-star-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.power-input-group,
+.star-input-group {
+  margin-bottom: 10px;
+}
+
+.power-input-group h4,
+.star-input-group h4 {
+  font-size: 14px;
+  color: rgb(71, 108, 41);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.power-input-group .input-box,
+.star-input-group .input-box {
+  margin: 5px 0;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.input-row label {
+  min-width: 80px;
+  font-size: 14px;
+  color: rgb(71, 108, 41);
+  font-weight: 500;
+}
+
+/* Specific appliance icon colors */
+.appliance-option:nth-child(1) .appliance-label i {
+  color: #4fc3f7;
+} /* Fan - Light Blue */
+.appliance-option:nth-child(2) .appliance-label i {
+  color: #4db6ac;
+} /* Refrigerator - Teal */
+.appliance-option:nth-child(3) .appliance-label i {
+  color: #ff8a65;
+} /* Television - Deep Orange */
+.appliance-option:nth-child(4) .appliance-label i {
+  color: #ffd54f;
+} /* Lighting - Yellow */
+.appliance-option:nth-child(5) .appliance-label i {
+  color: #7986cb;
+} /* Washing Machine - Indigo */
+.appliance-option:nth-child(6) .appliance-label i {
+  color: #4dd0e1;
+} /* AC - Cyan */
+.appliance-option:nth-child(7) .appliance-label i {
+  color: #f06292;
+} /* Geyser - Pink */
+
+/* Compact input styles for appliance details */
+.appliance-details-container .input-box {
+  margin: 8px 0;
+}
+
+.appliance-details-container .input-box input {
+  font-size: 14px;
+  padding: 12px 40px 12px 15px;
+}
+
+.appliance-details-container .input-box i {
+  font-size: 18px;
+  right: 15px;
+}

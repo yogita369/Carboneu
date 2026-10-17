@@ -1,0 +1,463 @@
+ <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c5530;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+        }
+        
+        .description {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .activity {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            transition: all 0.3s ease;
+        }
+        
+        .activity:hover {
+            background-color: #f0f7f0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .activity-icon {
+            font-size: 2rem;
+            margin-right: 20px;
+            color: #4a7c59;
+            width: 60px;
+            text-align: center;
+        }
+        
+        .activity-content {
+            flex: 1;
+        }
+        
+        .activity-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c5530;
+            margin-bottom: 5px;
+        }
+        
+        .activity-inputs {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        
+        input {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 120px;
+            margin-right: 10px;
+        }
+        
+        .unit {
+            font-size: 0.9rem;
+            color: #666;
+            min-width: 80px;
+        }
+        
+        .offset-info {
+            font-size: 0.9rem;
+            color: #4a7c59;
+            background-color: #e8f5e9;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin-left: 20px;
+        }
+        
+        .result {
+            font-weight: 600;
+            color: #2c5530;
+            font-size: 1.1rem;
+            min-width: 150px;
+            text-align: right;
+        }
+        
+        .submit-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .submit-btn {
+            background-color: #4a7c59;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #3a6548;
+        }
+        
+        .total-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e8f5e9;
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+        }
+        
+        .total-section.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .total-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #2c5530;
+        }
+        
+        .total-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c5530;
+        }
+        
+        .note {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            .activity {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .activity-icon {
+                margin-bottom: 10px;
+            }
+            
+            .activity-inputs {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+            
+            .input-group {
+                margin-bottom: 10px;
+                width: 100%;
+            }
+            
+            input {
+                width: 100%;
+            }
+            
+            .offset-info {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+            
+            .result {
+                margin-top: 10px;
+                text-align: left;
+            }
+        }
+    </style>
+
+    <div class="container">
+        <h1>Carbon Offset Calculator</h1>
+        <p class="description">Calculate your carbon footprint reduction based on your environmental activities</p>
+
+        <form action="/neutral/add-positive" method="POST">
+        <div class="activity">
+            <div class="activity-icon">🌳</div>
+            <div class="activity-content">
+                <div class="activity-title">Plant Trees</div>
+                <div class="activity-inputs">
+                    <div class="input-group">
+                        <input type="number" name="quantity"  id="trees" min="0" value="0">
+                        <input type="hidden" name="activityType" value="plant_trees">
+                        <div class="unit">Number of trees</div>
+                    </div>
+                    <div class="offset-info">Offset: 21 kg CO₂ per tree per year</div>
+                    <div class="result" id="trees-result">0 kg CO₂</div>
+                </div>
+            </div>
+        </div>
+      
+        <div class="activity">
+            <div class="activity-icon">♻️</div>
+            <div class="activity-content">
+                <div class="activity-title">Waste Recycled</div>
+                <div class="activity-inputs">
+                    <div class="input-group">
+                        <input type="number" name="quantity" id="waste" min="0" value="0">
+                        <input type="hidden" name="activityType" value="cycled_waste">
+                        <div class="unit">kg of waste recycled</div>
+                    </div>
+                    <div class="offset-info">Offset: 0.05 kg CO₂ per kg</div>
+                    <div class="result" id="waste-result">0 kg CO₂</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="activity">
+            <div class="activity-icon">🍂</div>
+            <div class="activity-content">
+                <div class="activity-title">Composting Organic Waste</div>
+                <div class="activity-inputs">
+                    <div class="input-group">
+                        <input type="number" name="quantity" id="compost" min="0" value="0">
+                        <input type="hidden" name="activityType" value="composting_organic_waste">
+                        <div class="unit">kg composted</div>
+                    </div>
+                    <div class="offset-info">Offset: 0.5 kg CO₂ per kg</div>
+                    <div class="result" id="compost-result">0 kg CO₂</div>
+                </div>
+            </div>
+        </div>
+        
+        </form>
+        <div class="submit-section">
+            <button class="submit-btn" id="submit-btn">Calculate Total Carbon Offset</button>
+            <button class="submit-btn" id="submit">Back to dashboard</button>
+        </div>
+        
+        <div class="total-section" id="total-section">
+            <div class="total-title">Congratulations🎉 You have reduced your carbon footprint </div>
+            <div class="total-value" id="total-result">0 kg CO₂</div>
+        </div>
+    </div>
+
+
+
+    
+    <script>
+        // Get all input elements
+        const treesInput = document.getElementById('trees');
+        const wasteInput = document.getElementById('waste');
+        const compostInput = document.getElementById('compost');
+        
+        // Get all result elements
+        const treesResult = document.getElementById('trees-result');
+        const wasteResult = document.getElementById('waste-result');
+        const compostResult = document.getElementById('compost-result');
+        
+        // Get submit button and total section
+        const submitBtn = document.getElementById('submit-btn');
+        const totalSection = document.getElementById('total-section');
+        const totalResult = document.getElementById('total-result');
+        
+        // Function to calculate and update individual results
+        function calculateIndividualResults() {
+            // Get values from inputs, default to 0 if empty
+            const treesValue = parseFloat(treesInput.value) || 0;
+            const wasteValue = parseFloat(wasteInput.value) || 0;
+            const compostValue = parseFloat(compostInput.value) || 0;
+            
+            // Calculate individual offsets
+            const treesOffset = treesValue * 21;
+            const wasteOffset = wasteValue * 0.05;
+            const compostOffset = compostValue * 0.5;
+            
+            // Update result displays
+            treesResult.textContent = `${treesOffset.toFixed(2)} kg CO₂`;
+            wasteResult.textContent = `${wasteOffset.toFixed(2)} kg CO₂`;
+            compostResult.textContent = `${compostOffset.toFixed(2)} kg CO₂`;
+        }
+        
+        // Function to calculate and display total offset
+        function calculateTotalOffset() {
+            // Get individual offsets
+            const treesOffset = parseFloat(treesResult.textContent) || 0;
+            const wasteOffset = parseFloat(wasteResult.textContent) || 0;
+            const compostOffset = parseFloat(compostResult.textContent) || 0;
+            
+            // Calculate total offset
+            const totalOffset = treesOffset + wasteOffset + compostOffset;
+            
+            // Update total result display
+            totalResult.textContent = `${totalOffset.toFixed(2)} kg CO₂`;
+            
+            // Show total section with animation
+            totalSection.classList.add('show');
+        }
+        
+        // Add event listeners to all inputs for live calculation
+        treesInput.addEventListener('input', calculateIndividualResults);
+        wasteInput.addEventListener('input', calculateIndividualResults);
+        compostInput.addEventListener('input', calculateIndividualResults);
+        
+        // Add event listener to submit button
+        submitBtn.addEventListener('click', calculateTotalOffset);
+        
+        // Calculate initial individual results on page load
+        calculateIndividualResults();
+    </script>
+
+
+<!-- <script>
+  const SubmitBtn = document.getElementById('submit');
+
+  submitBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    // Collect quantities from inputs (only positive numbers)
+    const activities = {
+      plant_trees: Number(document.getElementById('trees')?.value || 0),
+      cycled_waste: Number(document.getElementById('waste')?.value || 0), // or 'recycled_waste' if you changed key
+      composting_organic_waste: Number(document.getElementById('compost')?.value || 0),
+      food_skipped_meals: Number(document.getElementById('food')?.value || 0),
+      transport_km_saved: Number(document.getElementById('transport')?.value || 0),
+      energy_saving: Number(document.getElementById('energy')?.value || 0),
+      fuel_saved_liters: Number(document.getElementById('fuel')?.value || 0)
+    };
+
+    // remove zero entries
+    Object.keys(activities).forEach(k => {
+      if (!activities[k] || activities[k] <= 0) delete activities[k];
+    });
+
+    if (Object.keys(activities).length === 0) {
+      alert('Please enter at least one activity amount greater than 0.');
+      return;
+    }
+
+    // Optional: disable button to prevent double-click
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Saving...';
+
+    try {
+      const resp = await fetch('/neutral/add-multiple', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ activities })
+      });
+
+      const data = await resp.json();
+      if (resp.ok && data.success) {
+        // redirect to neutral page to refresh totals & offsets
+        window.location.href = '/neutral';
+      } else {
+        alert(data.message || 'Failed to save offsets');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Calculate Total Carbon Offset';
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Server error while saving offsets.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Calculate Total Carbon Offset';
+    }
+  });
+</script> -->
+
+<script>
+  const calculateBtn = document.getElementById('submit-btn');
+  const backBtn = document.getElementById('submit');
+
+  // ⭐ BACK BUTTON → JUST GO TO DASHBOARD
+  backBtn.addEventListener('click', () => {
+    window.location.href = "/neutral";   // <-- change if your dashboard route is different
+  });
+
+  // ⭐ CALCULATE + SAVE BUTTON
+  calculateBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    const activities = {
+      plant_trees: Number(document.getElementById('trees')?.value || 0),
+      cycled_waste: Number(document.getElementById('waste')?.value || 0),
+      composting_organic_waste: Number(document.getElementById('compost')?.value || 0),
+      food_skipped_meals: Number(document.getElementById('food')?.value || 0),
+      transport_km_saved: Number(document.getElementById('transport')?.value || 0),
+      energy_saving: Number(document.getElementById('energy')?.value || 0),
+      fuel_saved_liters: Number(document.getElementById('fuel')?.value || 0)
+    };
+
+    // remove zero entries
+    Object.keys(activities).forEach(k => {
+      if (!activities[k] || activities[k] <= 0) delete activities[k];
+    });
+
+    if (Object.keys(activities).length === 0) {
+      alert('Please enter at least one activity amount greater than 0.');
+      return;
+    }
+
+    // Disable button temporarily
+    calculateBtn.disabled = true;
+    calculateBtn.textContent = 'Saving...';
+
+    try {
+      const resp = await fetch('/neutral/add-multiple', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ activities })
+      });
+
+      const data = await resp.json();
+      if (resp.ok && data.success) {
+        window.location.href = '/neutral';
+      } else {
+        alert(data.message || 'Failed to save offsets');
+        calculateBtn.disabled = false;
+        calculateBtn.textContent = 'Calculate Total Carbon Offset';
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Server error while saving offsets.');
+      calculateBtn.disabled = false;
+      calculateBtn.textContent = 'Calculate Total Carbon Offset';
+    }
+  });
+</script>

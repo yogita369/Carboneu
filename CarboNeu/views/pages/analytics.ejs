@@ -1,0 +1,174 @@
+<% layout("/layout/boiler") %>
+
+<div class="report-wrapper">
+
+  <!-- Page Title -->
+  <h1 class="page-title">Emission Analytics Report</h1>
+
+  <!-- Entire Report Box -->
+  <div class="report-box">
+
+    <!-- Summary Section -->
+    <div class="summary-card">
+      <h2>Total Emission</h2>
+      <p class="emission-value"><%= totalEmission %> kg CO₂</p>
+
+      <div class="summary-date">
+        <strong>Date & Time:</strong> <%= createdAt %>
+      </div>
+    </div>
+
+    <!-- Breakdown + Chart in One White Background -->
+    <div class="analysis-section">
+
+      <!-- Breakdown List -->
+      <div class="breakdown-box">
+        <h3>Breakdown by Category</h3>
+
+        <ul class="breakdown-list">
+          <li><strong>Energy:</strong> <%= breakdown.energy.toFixed(2) %> kg</li>
+          <li><strong>Fuel:</strong> <%= breakdown.fuel.toFixed(2) %> kg</li>
+          <li><strong>Food:</strong> <%= breakdown.food.toFixed(2) %> kg</li>
+          <li><strong>Travel:</strong> <%= breakdown.travel.toFixed(2) %> kg</li>
+        </ul>
+      </div>
+
+      <!-- Doughnut Chart -->
+      <div class="chart-box">
+        <canvas id="emissionChart"></canvas>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('emissionChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Energy', 'Fuel', 'Food', 'Travel'],
+      datasets: [{
+        data: [
+          "<%= breakdown.energy %>",
+          "<%= breakdown.fuel %>",
+          "<%= breakdown.food %>",
+          "<%= breakdown.travel %>"
+        ],
+        backgroundColor: ['#f7c600', '#ff5733', '#28a745', '#33b5e5'],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom' },
+        title: { display: true, text: 'Emission Breakdown' }
+      }
+    }
+  });
+</script>
+
+
+<style>
+
+/* Full Page Background */
+.report-wrapper {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 10px;
+}
+
+/* Title */
+.page-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+/* ONE Single White Background Box */
+.report-box {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Summary Card */
+.summary-card {
+  width: 100%;
+  background: #fdfdfd;
+  border: 2px solid #f0f0f0;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.summary-card h2 {
+  margin: 0;
+}
+
+.emission-value {
+  font-size: 30px;
+  font-weight: bold;
+  color: #28a745;
+  margin-top: 10px;
+}
+
+.summary-date {
+  margin-top: 8px;
+}
+
+/* Horizontal Container */
+.analysis-section {
+  display: flex;
+  gap: 30px;
+}
+
+/* Breakdown List */
+.breakdown-box {
+  flex: 0.75;
+}
+
+.breakdown-box h3 {
+  margin-bottom: 15px;
+}
+
+.breakdown-list {
+  list-style: none;
+  padding: 0;
+  font-size: 18px;
+  line-height: 1.9;
+}
+
+.breakdown-list li {
+  background: #f8f9fa;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border-left: 4px solid #28a745;
+}
+
+/* Chart Container */
+.chart-box {
+  flex: 1.25;
+  height: 350px;
+  width:350px;
+  background: #fafafa;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+}
+
+#emissionChart {
+  width: 100%;
+  height: 100%;
+}
+
+</style>

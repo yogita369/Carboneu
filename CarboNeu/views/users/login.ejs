@@ -1,0 +1,32 @@
+<% layout("/layout/boiler")%>
+<!-- Video Background -->
+<video id="video-background" autoplay muted loop>
+  <source src="assets/login2.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+<!-- Login Form -->
+<div class="wrapper">
+  <form action="/login" method="POST">
+    <h1>Login</h1>
+    <div class="input-box">
+      <input type="text" name="email" placeholder="E-mail Id" required />
+      <i class="bx bxs-user"></i>
+    </div>
+    <div class="input-box">
+      <input type="password" name="password" placeholder="Password" required />
+      <i class="bx bxs-lock-alt"></i>
+    </div>
+    <div class="remember-forgot">
+      <label><input type="checkbox" />Remember Me</label>
+      <a href="#">Forgot Password</a>
+    </div>
+    <!-- <a type="submit" class="btn" href="./home">Login</a> -->
+    <button type="submit" class="btn">Login</button>
+    <div class="register-link">
+      <p>Don't have an account? <a href="./register">Join our community</a></p>
+    </div>
+  </form>
+</div>
+
+

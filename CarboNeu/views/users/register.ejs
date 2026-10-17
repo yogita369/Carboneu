@@ -1,0 +1,199 @@
+<% layout("/layout/boiler")%>
+  <!-- Video Background -->
+  <video id="video-background" autoplay muted loop>
+    <source src="assets/login2.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  
+  <!-- Registration Form -->
+  <div class="wrapper-res">
+    <form id="registrationForm" action="/register" method="POST" >
+      <h1>Join Our Community</h1>
+      <p class="subtitle">Create your account and share your eco-friendly lifestyle</p>
+      
+      <div class="input-box">
+        <input type="text" name="name"  placeholder="Full Name" required>
+        <i class='bx bxs-user'></i>
+      </div>
+      
+      <div class="input-box">
+        <input type="email" name="email" placeholder="Email Address" required>
+        <i class='bx bxs-envelope'></i>
+      </div>
+      
+      <div class="input-box">
+        <input type="password"  name="password" placeholder="Create Password" required>
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+      
+      <div class="question-group">
+        <label class="question-label">What are your food preferences?</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" id="vegan" name="food-preference" value="vegan">
+            <label for="vegan" class="radio-label">
+              <i class='bx bx-leaf'></i>
+              <span>Vegan</span>
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="vegetarian" name="food-preference" value="vegetarian">
+            <label for="vegetarian" class="radio-label">
+              <i class='bx bx-bowl-rice'></i>
+              <span>Vegetarian</span>
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="meat-eater" name="food-preference" value="meat-eater">
+            <label for="meat-eater" class="radio-label">
+              <i class='bx bx-dish'></i>
+              <span>Meat Eater</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <div id="meat-frequency" class="question-group hidden">
+        <label class="question-label">How often do you consume meat?</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" id="most-meals" name="meat-frequency" value="most-meals">
+            <label for="most-meals" class="radio-label">
+              <i class='bx bx-meal'></i>
+              <span>Most meals</span>
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="some-meals" name="meat-frequency" value="some-meals">
+            <label for="some-meals" class="radio-label">
+              <i class='bx bx-food-menu'></i>
+              <span>Some meals</span>
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="rarely" name="meat-frequency" value="rarely">
+            <label for="rarely" class="radio-label">
+              <i class='bx bx-restaurant'></i>
+              <span>Very rarely</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <div class="question-group">
+        <label class="question-label">Do you use renewable energy sources?</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" id="renewable-yes" name="renewable-energy" value="yes">
+            <label for="renewable-yes" class="radio-label">
+              <i class='bx bx-check-circle'></i>
+              <span>Yes</span>
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="renewable-no" name="renewable-energy" value="no">
+            <label for="renewable-no" class="radio-label">
+              <i class='bx bx-x-circle'></i>
+              <span>No</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <div id="renewable-percentage" class="question-group hidden">
+        <label class="question-label">What percentage of your energy comes from renewable sources?</label>
+        <div class="select-box">
+          <select id="energy-percentage" name="energyPercentage" required>
+            <option value="" disabled selected>Select percentage</option>
+            <option value="25">25%</option>
+            <option value="50">50%</option>
+            <option value="75">75%</option>
+            <option value="100">100%</option>
+          </select>
+          <i class='bx bx-chevron-down'></i>
+        </div>
+      </div>
+
+      <!-- New Appliances Section -->
+      <div class="question-group">
+        <label class="question-label">Select the appliances in your home:</label>
+        <div class="appliance-group">
+          <!-- Fan -->
+          <div class="appliance-option-container">
+            <div class="appliance-option">
+              <input type="checkbox" id="appliance-fan" name="appliances" value="fan">
+              <label for="appliance-fan" class="appliance-label">
+                <i class='bx bx-wind'></i>
+                <span>Fan</span>
+              </label>
+            </div>
+            <div id="fan-details" class="appliance-details-container hidden"></div>
+          </div>
+
+          <!-- Refrigerator -->
+          <div class="appliance-option-container">
+            <div class="appliance-option">
+              <input type="checkbox" id="appliance-refrigerator" name="appliances" value="refrigerator">
+              <label for="appliance-refrigerator" class="appliance-label">
+                <i class='bx bx-fridge'></i>
+                <span>Refrigerator</span>
+              </label>
+            </div>
+            <div id="refrigerator-details" class="appliance-details-container hidden"></div>
+          </div>
+          
+          <!-- Lighting -->
+          <!-- Washing Machine -->
+          <div class="appliance-option-container">
+            <div class="appliance-option">
+              <input type="checkbox" id="appliance-washing-machine" name="appliances" value="washing-machine">
+              <label for="appliance-washing-machine" class="appliance-label">
+                <i class='bx bx-washer'></i>
+                <span>Washing Machine</span>
+              </label>
+            </div>
+            <div id="washing-machine-details" class="appliance-details-container hidden"></div>
+          </div>
+
+          <!-- Air Conditioner / Cooler -->
+          <div class="appliance-option-container">
+            <div class="appliance-option">
+              <input type="checkbox" id="appliance-ac" name="appliances" value="ac">
+              <label for="appliance-ac" class="appliance-label">
+                <i class='bx bx-cool'></i>
+                <span>Air Conditioner / Cooler</span>
+              </label>
+            </div>
+            <div id="ac-details" class="appliance-details-container hidden"></div>
+          </div>
+
+          <!-- Water Heater (Geyser) -->
+          <div class="appliance-option-container">
+            <div class="appliance-option">
+              <input type="checkbox" id="appliance-geyser" name="appliances" value="geyser">
+              <label for="appliance-geyser" class="appliance-label">
+                <i class='bx bx-water'></i>
+                <span>Water Heater (Geyser)</span>
+              </label>
+            </div>
+            <div id="geyser-details" class="appliance-details-container hidden"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="terms-agreement">
+        <label>
+          <input type="checkbox" required>
+          I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+        </label>
+      </div>
+
+      <button type="submit" class="btn">Create Account</button>
+  
+   
+      
+      <div class="login-link">
+        <p>Already have an account? <a href="./login">Login here</a></p>
+      </div>
+    </form>
+  </div>

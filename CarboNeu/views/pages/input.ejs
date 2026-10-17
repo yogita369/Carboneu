@@ -1,0 +1,290 @@
+<% layout('/layout/boiler')%>
+<style>
+  /* Remove number input spinners */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Page wrapper to center container */
+  .page-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 10vh 0;
+  }
+
+  /* Container */
+  .container {
+    background: white;
+    width: 75%;
+    min-height: 60vh;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .inputs-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 10px;
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 130px;
+    text-align: center;
+  }
+
+  .icon-box {
+    width: 100px;
+    height: 100px;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+  }
+
+  .icon-box img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+  }
+
+  .input-group label {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+  }
+
+  .input-group input {
+    width: 100%;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+
+  button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background-color:#313647;
+    color: white;
+    font-size: 1rem;
+  }
+
+  button:disabled {
+    background-color:#435663;
+    cursor: not-allowed;
+  }
+</style>
+
+<body>
+  <form id="inputForm" action="/input/submit-input" method="POST">
+    <div class="page-wrapper">
+      <div class="container">
+        <h2 id="categoryTitle"></h2>
+        <div id="inputsContainer" class="inputs-container">
+          <!-- Dynamic inputs injected here -->
+        </div>
+
+        <div class="buttons">
+          <button type="button" id="backBtn">Back</button>
+          <button type="submit" id="nextBtn">Next</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hidden inputs for backend -->
+    <input type="hidden" name="energy[acHrs]" id="acHrs" />
+    <input type="hidden" name="energy[heaterHrs]" id="heaterHrs" />
+    <input type="hidden" name="energy[refrigeratorHrs]" id="refrigeratorHrs" />
+    <input
+      type="hidden"
+      name="energy[washingMachineHrs]"
+      id="washingMachineHrs"
+    />
+    <input type="hidden" name="energy[fanHrs]" id="fanHrs" />
+
+    <input type="hidden" name="travel1[airKm]" id="airKm" />
+    <input type="hidden" name="travel1[trainKm]" id="trainKm" />
+    <input type="hidden" name="travel1[metroKm]" id="metroKm" />
+
+    <input type="hidden" name="travel2[busKm]" id="busKm" />
+    <input type="hidden" name="travel2[carKm]" id="carKm" />
+    <input type="hidden" name="travel2[electricBusKm]" id="electricBusKm" />
+    <input type="hidden" name="travel2[electricCarKm]" id="electricCarKm" />
+
+    <input type="hidden" name="fuel1[lpgKg]" id="lpgKg" />
+    <input type="hidden" name="fuel1[woodKg]" id="woodKg" />
+    <input type="hidden" name="fuel1[coalKg]" id="coalKg" />
+
+    <input type="hidden" name="fuel2[petrolLit]" id="petrolLit" />
+    <input type="hidden" name="fuel2[dieselLit]" id="dieselLit" />
+    <input type="hidden" name="fuel2[cngLit]" id="cngLit" />
+  </form>
+
+  <script>
+    const steps = [
+      {
+        title: "Energy - Page 1",
+        fields: [
+          "AC",
+          "Heater(Gyser)",
+          "Refrigerator",
+          "Washing Machine",
+          "Fan",
+        ],
+      },
+      {
+        title: "Travel - Page 1",
+        fields: ["Air Travel (km)", "Train Travel (km)", "Metro Travel (km)"],
+      },
+      {
+        title: "Travel - Page 2",
+        fields: [
+          "Bus (km)",
+          "Cab/Car (km)",
+          "Electric Bus (km)",
+          "Electric Car (km)",
+        ],
+      },
+      {
+        title: "Fuel - Page 1",
+        fields: ["LPG/CNG (kg)", "Wood (kg)", "Coal (kg)"],
+      },
+      {
+        title: "Fuel - Page 2",
+        fields: ["Petrol (L)", "Diesel (L)", "LPG/CNG (L)"],
+      },
+    ];
+
+    let currentStep = 0;
+    const userData = {};
+
+    const titleEl = document.getElementById("categoryTitle");
+    const inputsContainer = document.getElementById("inputsContainer");
+    const nextBtn = document.getElementById("nextBtn");
+    const backBtn = document.getElementById("backBtn");
+    const form = document.getElementById("inputForm");
+
+    // Create input group
+    function createInputGroup(field) {
+      const group = document.createElement("div");
+      group.classList.add("input-group");
+
+      const iconBox = document.createElement("div");
+      iconBox.classList.add("icon-box");
+
+      const cleanName = field.toLowerCase().replace(/[^a-z0-9]/g, "");
+      const img = document.createElement("img");
+      img.src = `/assets/${cleanName}.svg`;
+      img.onerror = () => {
+        img.src = "/assets/default.svg";
+      };
+      img.alt = `${field} icon`;
+      iconBox.appendChild(img);
+      group.appendChild(iconBox);
+
+      const label = document.createElement("label");
+      label.textContent = field;
+
+      const input = document.createElement("input");
+      input.type = "number";
+      input.placeholder = "Enter value";
+      input.value = userData[field] || "";
+      input.oninput = () => {
+        userData[field] = parseFloat(input.value) || 0;
+      };
+
+      group.appendChild(label);
+      group.appendChild(input);
+      inputsContainer.appendChild(group);
+    }
+
+    // Render current step
+    function renderStep() {
+      const step = steps[currentStep];
+      titleEl.textContent = step.title;
+      inputsContainer.innerHTML = "";
+
+      step.fields.forEach(createInputGroup);
+
+      backBtn.disabled = currentStep === 0;
+      nextBtn.textContent =
+        currentStep === steps.length - 1 ? "Submit" : "Next";
+    }
+
+    // Handle Next/Back buttons
+    nextBtn.addEventListener("click", (e) => {
+      if (currentStep < steps.length - 1) {
+        e.preventDefault(); // prevent form submit until last step
+        currentStep++;
+        renderStep();
+      }
+    });
+
+    backBtn.addEventListener("click", () => {
+      if (currentStep > 0) {
+        currentStep--;
+        renderStep();
+      }
+    });
+
+    // On form submit, map userData to hidden inputs
+    form.addEventListener("submit", () => {
+      document.getElementById("acHrs").value = userData["AC"] || 0;
+      document.getElementById("heaterHrs").value =
+        userData["Heater(Gyser)"] || 0;
+      document.getElementById("refrigeratorHrs").value =
+        userData["Refrigerator"] || 0;
+      document.getElementById("washingMachineHrs").value =
+        userData["Washing Machine"] || 0;
+      document.getElementById("fanHrs").value = userData["Fan"] || 0;
+
+      document.getElementById("airKm").value = userData["Air Travel (km)"] || 0;
+      document.getElementById("trainKm").value =
+        userData["Train Travel (km)"] || 0;
+      document.getElementById("metroKm").value =
+        userData["Metro Travel (km)"] || 0;
+
+      document.getElementById("busKm").value = userData["Bus (km)"] || 0;
+      document.getElementById("carKm").value = userData["Cab/Car (km)"] || 0;
+      document.getElementById("electricBusKm").value =
+        userData["Electric Bus (km)"] || 0;
+      document.getElementById("electricCarKm").value =
+        userData["Electric Car (km)"] || 0;
+
+      document.getElementById("lpgKg").value = userData["LPG/CNG (kg)"] || 0;
+      document.getElementById("woodKg").value = userData["Wood (kg)"] || 0;
+      document.getElementById("coalKg").value = userData["Coal (kg)"] || 0;
+
+      document.getElementById("petrolLit").value = userData["Petrol (L)"] || 0;
+      document.getElementById("dieselLit").value = userData["Diesel (L)"] || 0;
+      document.getElementById("cngLit").value = userData["LPG/CNG (L)"] || 0;
+    });
+
+    // Initial render
+    renderStep();
+  </script>
+</body>

@@ -1,0 +1,23 @@
+<nav>
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link" href="/home">Home</a>
+    </li>
+    <li class="nav-item">
+
+    <% if (currentUser) { %>
+    <li class="nav-item">
+      <a class="nav-link" href="/analytics">Analytics</a>
+    </li>
+    <% } %>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <% if (currentUser) { %>
+      <span class="nav-link">Welcome, <%= currentUser.name.split(" ")[0] %></span>
+      <a href="/logout" class="btn">Logout</a>
+      <% } else { %>
+      <a class="btn" href="./login">Login</a>
+      <a class="btn" href="./register">Register</a>
+      <% } %>
+    </div>
+  </ul>
+</nav>
